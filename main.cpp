@@ -43,7 +43,7 @@ bool takeTurn( GameBoard<Tile,Player,6,6> &bg, const std::string &pName) {
 					// payer les joueurs presents
 					// sur la meme tuile
 					for ( auto op : opL ) {
-						p.pay( op, 1 );
+						p.pay( op );
 						bg.setPlayer( op );
 					}
 					// effectuer l’action

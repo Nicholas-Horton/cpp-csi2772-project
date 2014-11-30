@@ -18,7 +18,7 @@ class GameBoard{
 		GameBoard(){
 			tileGrid = new T[Y][X];
 			playerGrid = new list<J>
-		};
+		}
 
 		GameBoard(const GameBoard& other){
 			tileGrid = new T[Y][X];
@@ -29,15 +29,15 @@ class GameBoard{
 					tileGrid[i][j] = other.tileGrid[i][j];
 					playerGrid[i][j] = other.playerGrid[i][j];
 				}
-		};
+		}
 
 		void add(const T& tile, int row, int col){
 			tileGrid[row][col] = tile;
-		};
+		}
 
 		const T& getTile(int row, int col) const{
 			return T[row][col];
-		};
+		}
 
 		void getCoordinate(const T &tile, int *row, int *col) const{
 			for (int i(0); i < Y; i++)
@@ -48,31 +48,38 @@ class GameBoard{
 						return;
 					}
 				}
-		};
+		}
 
 		void addPlayer(J player, int row, int col){
-
-		}; // ajoute un joueur sur le plateau
+			playersGrid[row][col].push_front(player);
+		} // ajoute un joueur sur le plateau
 
 		void setPlayer(J player){
-
-		};
+			for (int i(0); i < Y; i++)
+				for (int j(0); j < X; j++){
+					for (std::list<J>::const_iterator iterator = playerGrid[i][j].begin(),
+						end = playerGrid[i][j].end();
+						iterator != end; ++iterator) {
+    				//donothingfornow
+					}
+				}
+		}
 
 		J getPlayer(const std::string& playerName){
 
-		};
+		}
 
 		const T& getTile(const std::string& playerName) const{
 
-		};
+		}
 
 		std::vector<J> getPlayers(const T& tile) const{
 
-		};
+		}
 
-		const T& move(Enum Move move, const std::string& playerName ){
+		const T& move(enum Move move, const std::string& playerName ){
 
-		};
+		}
 };
 
 #endif //GAMEBOARD_H
