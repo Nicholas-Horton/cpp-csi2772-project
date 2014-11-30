@@ -35,3 +35,7 @@ void Player::eat(){
 		food--;
 	}
 }
+
+int Player::getNumFreeResources() {
+	return cart - gold + ruby + spice + fabric + jewel;
+}

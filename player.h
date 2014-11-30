@@ -26,6 +26,8 @@ class Player{
 	bool pay( Player& player );
 	// reduit le nombre de nourritures de 1 si food > 0
 	void eat();
+	// nombre de resources de libres
+	int getNumFreeResources();
 };
 
 #endif //PLAYER_H

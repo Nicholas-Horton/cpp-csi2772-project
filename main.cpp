@@ -4,6 +4,8 @@
 #include "gameboard.h"
 #include "tile.h"
 #include "player.h"
+#include <time.h>
+
 
 bool isPaused;
 bool playerHasWon;
@@ -81,6 +83,8 @@ void runGame(){
 }
 
 int main(){
+	srand(time(NULL));
+
 	isPaused = false;
 	playerHasWon = false;
 
