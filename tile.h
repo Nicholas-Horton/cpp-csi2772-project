@@ -2,9 +2,9 @@
 #define TILE_H
 
 class Tile{
-  private:
+	private:
 
-  public:
+	public:
 
 };
 
