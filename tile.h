@@ -2,10 +2,10 @@
 #define TILE_H
 
 class Tile{
-	private:
-		
-	public:
-		
+  private:
+
+  public:
+
 };
 
 #endif //TILE_H
