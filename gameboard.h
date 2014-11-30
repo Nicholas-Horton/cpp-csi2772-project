@@ -1,6 +1,7 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
 
+template <class T, class J, int X, int Y> //T for tile, J for player, X for horizontal axis, Y for vertical axis
 class GameBoard{
 	private:
 		
