@@ -1,9 +1,13 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <string>
+
 class Player{
   private:
   public:
+  string name;
+
 	int cart; //la capacité du joueur.
 
 	int gold; //le nombre de pièces d’or.

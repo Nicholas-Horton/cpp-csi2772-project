@@ -1,3 +1,5 @@
+#include "player.h"
+
 Player::Player(){
 	cart = 9;
 
