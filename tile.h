@@ -4,6 +4,7 @@
 class Tile{
 	private:
 	public:
+		Tile();
 		bool operator==(const Tile &t);
 		virtual bool action(Player& player);
 		virtual Tile* clone();
