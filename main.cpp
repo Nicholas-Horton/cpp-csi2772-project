@@ -19,7 +19,7 @@ GameBoard<Tile,Player,6,6> setup(){
 	return _bg;
 }
 
-bool takeTurn( GameBoard<Tile,Player,8,8> &bg, const std::string &pName) {
+bool takeTurn( GameBoard<Tile,Player,6,6> &bg, const std::string &pName) {
 	try {
 			Move m;
 		cin.exceptions(std::istream::failbit);
