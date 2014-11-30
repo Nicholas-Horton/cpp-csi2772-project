@@ -13,7 +13,7 @@ template <typename T, typename J, int X, int Y> //T for tile, J for player, X fo
 class GameBoard{
 	private:
 		T **tileGrid;
-		list<J> **playersGrid;
+		list<J> **playerGrid;
 	public:
 		GameBoard(){
 			tileGrid = new T[Y][X];
@@ -51,7 +51,7 @@ class GameBoard{
 		}
 
 		void addPlayer(J player, int row, int col){
-			playersGrid[row][col].push_front(player);
+			playerGrid[row][col].push_front(player);
 		} // ajoute un joueur sur le plateau
 
 		void setPlayer(J player){
@@ -60,21 +60,47 @@ class GameBoard{
 					for (std::list<J>::const_iterator iterator = playerGrid[i][j].begin(),
 						end = playerGrid[i][j].end();
 						iterator != end; ++iterator) {
-    				//donothingfornow
+						if (player.name == *iterator.name){
+							*iterator = player;
+							return;
+						}
 					}
 				}
 		}
 
 		J getPlayer(const std::string& playerName){
-
+			for (int i(0); i < Y; i++)
+				for (int j(0); j < X; j++){
+					for (std::list<J>::const_iterator iterator = playerGrid[i][j].begin(),
+						end = playerGrid[i][j].end();
+						iterator != end; ++iterator) {
+						if (player.name == *iterator.name){
+							return *iterator;
+						}
+					}
+				}
 		}
 
 		const T& getTile(const std::string& playerName) const{
-
+			for (int i(0); i < Y; i++)
+				for (int j(0); j < X; j++){
+					for (std::list<J>::const_iterator iterator = playerGrid[i][j].begin(),
+						end = playerGrid[i][j].end();
+						iterator != end; ++iterator) {
+						if (player.name == *iterator.name){
+							return tileGrid[i][j];
+						}
+					}
+				}
 		}
 
 		std::vector<J> getPlayers(const T& tile) const{
-
+			for (int i(0); i < Y; i++)
+				for (int j(0); j < X; j++){
+					if(tileGrid[i][j] == tile){
+						return std::vector<J> result{std::begin(playerGrid[i][j]), std::end(playerGrid[i][j])};
+					}
+				}
 		}
 
 		const T& move(enum Move move, const std::string& playerName ){
