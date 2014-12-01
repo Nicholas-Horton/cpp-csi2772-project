@@ -11,15 +11,15 @@ class Player{
   public:
   string name;
 
-	int cart; //la capacité du joueur.
+	unsigned int cart; //la capacité du joueur.
 
-	int gold; //le nombre de pièces d’or.
-	int ruby; //le nombre de rubis.
-	int spice; //le nombre de sacs d’épices.
-	int fabric; //le nombre de rouleaux de tissus.
-	int jewel; //le nombre de bijoux.
+	unsigned int gold; //le nombre de pièces d’or.
+	unsigned int ruby; //le nombre de rubis.
+	unsigned int spice; //le nombre de sacs d’épices.
+	unsigned int fabric; //le nombre de rouleaux de tissus.
+	unsigned int jewel; //le nombre de bijoux.
 
-	int food; //le nombre de nourritures.
+	unsigned int food; //le nombre de nourritures.
 
 	Player();
 	Player(string _name);
