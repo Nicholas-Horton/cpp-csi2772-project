@@ -104,22 +104,21 @@ class GameBoard{
 		}
 
 		const T& move(enum Move move, const std::string& playerName ){ //TODO: uncertain about implementation
+			T playerTile = getTile(playerName)
+			int x, y;
+			getCoordinate(playerTile, y, x);
+			//J player = getPlayer(playerName);
+
+			for (std::list<J>::const_iterator iterator = playerGrid[y][x].begin(),
+					end = playerGrid[y][x].end();
+					iterator != end; ++iterator) {
+					if (player.name == *iterator.name){
+						J player = *iterator;
+						break;
+					}
+			}
+
 			switch(move){
-
-				T playerTile = getTile(playerName)
-				int x, y;
-				getCoordinate(playerTile, y, x);
-				//J player = getPlayer(playerName);
-
-				for (std::list<J>::const_iterator iterator = playerGrid[i][j].begin(),
-						end = playerGrid[i][j].end();
-						iterator != end; ++iterator) {
-						if (player.name == *iterator.name){
-							J player = *iterator;
-							break;
-						}
-				}
-
 				case UP    :
 					addPlayer(player, y-1, x);
 					break;
@@ -132,10 +131,10 @@ class GameBoard{
 				case RIGHT :
 					addPlayer(player, y, x+1);
 					break;
-
-				playerGrid[y][x].remove(player);
-
 			}
+
+			playerGrid[y][x].remove(player);
+
 		}
 };
 
