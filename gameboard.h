@@ -141,23 +141,23 @@ class GameBoard{
 
 						switch(move){
 							case UP    :
-								addPlayer(player, *y-1, *x);
+								addPlayer(player, --(*y), *x);
 								break;
 							case DOWN  :
-								addPlayer(player, *y+1, *x);
+								addPlayer(player, ++(*y), *x);
 								break;
 							case LEFT  :
-								addPlayer(player, *y, *x-1);
+								addPlayer(player, *y, --(*x));
 								break;
 							case RIGHT :
-								addPlayer(player, *y, *x+1);
+								addPlayer(player, *y, ++(*x));
 
 						}
 						(playerGrid[*y][*x]).erase(iterator);
 						break;
 					}
 			}
-			return playerTile;
+			return tileGrid[*y][*x];
 		}
 };
 
