@@ -9,11 +9,11 @@ bool Tile::operator==(const Tile &t){
 	return false; //TODO: complete
 }
 
-virtual bool Tile::action(Player& player){
+bool Tile::action(Player& player){
 	return true; //TODO: implement subclasses, revise implementation for tile
 }
 
-virtual Tile::Tile* clone(){
+Tile::Tile* clone(){
 	return new Tile(*this); //TODO: check if valid
 }
 
@@ -100,7 +100,7 @@ bool MarcheNoirTile::action(Player& player){
 		player.eat();
 		player.gold -= 1;
 		int numResources = rand() % 5;
-		for (int i = 0; i < num; ++i){
+		for (int i = 0; i < numResources; ++i){
 			int type = rand() % 3;
 			if(type == 0)
 				player.fabric++;
@@ -117,7 +117,7 @@ bool CasinoTile::action(Player& player){
 	if(player.canAct() && player.gold >= 1) {
 		player.eat();
 		player.gold -= 1;
-		int n = rand % 10;
+		int n = rand() % 10;
 		if(n >= 4 && n <= 6 )
 			player.gold += 2;
 		else if(n >= 7 && n <= 8)
