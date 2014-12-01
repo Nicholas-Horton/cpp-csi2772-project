@@ -69,6 +69,7 @@ bool takeTurn( GameBoard<Tile,Player,6,6> &gb, const std::string &pName) {
 		// si le joueur peut effectuer l’action
 		if (p.canAct()) { //TODO: logic doesn't permit restaurant action if no food
 			bool makeAction;
+			cout << "You arrive at a " << t.type << "." << endl;
 			cout << "Would you like to take an action? (true or false?)" << endl;
 			cin>>makeAction;
 			if ( makeAction ) {

@@ -193,16 +193,16 @@ class GameBoard{
 						*player =  *iterator;
 						switch(move){
 							case UP    :
-								addPlayer(*(new J(*player)), --(*y), *x);
+								addPlayer(*(new J(*player)), *y = *y - 1, *x);
 								break;
 							case DOWN  :
-								addPlayer(*(new J(*player)), ++(*y), *x);
+								addPlayer(*(new J(*player)), *y = *y + 1, *x);
 								break;
 							case LEFT  :
-								addPlayer(*(new J(*player)), *y, --(*x));
+								addPlayer(*(new J(*player)), *y, *x = *x - 1);
 								break;
 							case RIGHT :
-								addPlayer(*(new J(*player)), *y, ++(*x));
+								addPlayer(*(new J(*player)), *y, *x = *x + 1);
 								break;
 						}
 						(playerGrid[*y][*x]).erase(iterator);
