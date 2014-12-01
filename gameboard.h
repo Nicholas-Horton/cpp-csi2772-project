@@ -57,7 +57,7 @@ class GameBoard{
 		void setPlayer(J player){
 			for (int i(0); i < Y; i++)
 				for (int j(0); j < X; j++){
-					for (std::list<J>::const_iterator iterator = playerGrid[i][j].begin(),
+					for (typename list<J>::const_iterator iterator = playerGrid[i][j].begin(),
 						end = playerGrid[i][j].end();
 						iterator != end; ++iterator) {
 						if (player.name == *iterator.name){
@@ -68,10 +68,10 @@ class GameBoard{
 				}
 		}
 
-		J getPlayer(const std::string& playerName){
+		J getPlayer(const string& playerName){
 			for (int i(0); i < Y; i++)
 				for (int j(0); j < X; j++){
-					for (std::list<J>::const_iterator iterator = playerGrid[i][j].begin(),
+					for (typename list<J>::const_iterator iterator = playerGrid[i][j].begin(),
 						end = playerGrid[i][j].end();
 						iterator != end; ++iterator) {
 						if (player.name == *iterator.name){
@@ -81,10 +81,10 @@ class GameBoard{
 				}
 		}
 
-		const T& getTile(const std::string& playerName) const{
+		const T& getTile(const string& playerName) const{
 			for (int i(0); i < Y; i++)
 				for (int j(0); j < X; j++){
-					for (std::list<J>::const_iterator iterator = playerGrid[i][j].begin(),
+					for (typename list<J>::const_iterator iterator = playerGrid[i][j].begin(),
 						end = playerGrid[i][j].end();
 						iterator != end; ++iterator) {
 						if (player.name == *iterator.name){
@@ -94,23 +94,23 @@ class GameBoard{
 				}
 		}
 
-		std::vector<J> getPlayers(const T& tile) const{
+		vector<J> getPlayers(const T& tile) const{
 			for (int i(0); i < Y; i++)
 				for (int j(0); j < X; j++){
 					if(tileGrid[i][j] == tile){
-						return std::vector<J> result{std::begin(playerGrid[i][j]), std::end(playerGrid[i][j])};
+						return vector<J> result{begin(playerGrid[i][j]), end(playerGrid[i][j])};
 					}
 				}
 		}
 
-		const T& move(enum Move move, const std::string& playerName ){ //TODO: uncertain about implementation
+		const T& move(enum Move move, const string& playerName ){ //TODO: uncertain about implementation
 			T playerTile = getTile(playerName)
 			int x, y;
 			getCoordinate(playerTile, y, x);
 			//J player = getPlayer(playerName);
 			J player;
 
-			for (std::list<J>::const_iterator iterator = playerGrid[y][x].begin(),
+			for (typename list<J>::const_iterator iterator = playerGrid[y][x].begin(),
 					end = playerGrid[y][x].end();
 					iterator != end; ++iterator) {
 					if (player.name == *iterator.name){
