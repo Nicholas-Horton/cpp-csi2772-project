@@ -41,7 +41,7 @@ GameBoard<Tile,Player,6,6> setup(){
 
 			const Tile *t = &(_gb.getTile(i, j));
 			const RestaurantTile *r = dynamic_cast<const RestaurantTile*>(t);
-			cout << r != 0;
+			cout << (*t).type << endl;
 			if(r != 0){
 				for (int x = 0; x < playerNames.size(); ++x){
 					_gb.addPlayer(*(new Player(playerNames[x])), i, j);

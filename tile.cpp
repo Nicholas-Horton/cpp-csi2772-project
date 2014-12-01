@@ -4,6 +4,7 @@
 
 //Tile
 Tile::Tile(){
+	type = "Tile";
 }
 
 bool Tile::operator==(const Tile &t){
@@ -16,6 +17,46 @@ bool Tile::action(Player& player) const{
 
 Tile* Tile::clone() const{
 	return new Tile(*this); //TODO: check if valid
+}
+
+RestaurantTile::RestaurantTile(){
+	type = "RestaurantTile";
+}
+MarchandEpiceTile::MarchandEpiceTile(){
+	type = "MarchandEpiceTile";
+}
+MarchandTissusTile::MarchandTissusTile(){
+	type = "MarchandTissusTile";
+}
+BijoutierTile::BijoutierTile(){
+	type = "BijoutierTile";
+}
+FabriquantCharretteTile::FabriquantCharretteTile(){
+	type = "FabriquantCharretteTile";
+}
+PetitMarcheTile::PetitMarcheTile(){
+	type = "PetitMarcheTile";
+}
+MarcheEpicesTile::MarcheEpicesTile(){
+	type = "MarcheEpicesTile";
+}
+MarcheBijouxTile::MarcheBijouxTile(){
+	type = "MarcheBijouxTile";
+}
+MarcheTissusTile::MarcheTissusTile(){
+	type = "MarcheTissusTile";
+}
+MarcheNoirTile::MarcheNoirTile(){
+	type = "MarcheNoirTile";
+}
+CasinoTile::CasinoTile(){
+	type = "CasinoTile";
+}
+MarchandGemmesTile::MarchandGemmesTile(){
+	type = "MarchandGemmesTile";
+}
+PalaisTile::PalaisTile(){
+	type = "PalaisTile";
 }
 
 
