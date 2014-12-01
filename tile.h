@@ -2,6 +2,7 @@
 #define TILE_H
 
 #include "player.h"
+#include <vector>
 using namespace std;
 
 class Tile{
@@ -66,8 +67,18 @@ class PalaisTile : public Tile {
 	public:
 		bool action(Player& player);
 };
-
-
 ostream& operator<<(ostream &out, const Tile& tile);
+
+
+class TileFactory {
+	private:
+		int current;
+		vector<Tile> tiles;
+		TileFactory(int _nTiles);
+	public:
+		static TileFactory *get(int _nTiles);
+		Tile *next();
+
+};
 
 #endif //TILE_H
