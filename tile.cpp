@@ -3,22 +3,13 @@
 #include <stdlib.h>
 
 //Tile
-Tile::Tile(){
-	type = "Tile";
-}
-
 bool Tile::operator==(const Tile &t){
 	return type == t.type;
 }
 
-bool Tile::action(Player& player) const{
-	return true;
+DesertTile::DesertTile(){
+	type = "DesertTile";
 }
-
-Tile* Tile::clone() const{
-	return new Tile(*this); //TODO: check if valid
-}
-
 RestaurantTile::RestaurantTile(){
 	type = "RestaurantTile";
 }
@@ -60,11 +51,14 @@ PalaisTile::PalaisTile(){
 }
 
 
-bool RestaurantTile::action(Player& player){
+bool DesertTile::action(Player& player) const {
+	return true;
+}
+bool RestaurantTile::action(Player& player) const {
 	player.food = 10;
 	return true;
 }
-bool MarchandEpiceTile::action(Player& player){
+bool MarchandEpiceTile::action(Player& player) const {
 	if(player.gold >= 2) {
 		player.gold -= 2;
 		player.spice += min(player.getNumFreeResources(), 3);
@@ -72,7 +66,7 @@ bool MarchandEpiceTile::action(Player& player){
 	}
 	return false;
 }
-bool MarchandTissusTile::action(Player& player){
+bool MarchandTissusTile::action(Player& player) const {
 	if(player.gold >= 2) {
 		player.gold -= 2;
 		player.fabric += min(player.getNumFreeResources(), 3);
@@ -80,7 +74,7 @@ bool MarchandTissusTile::action(Player& player){
 	}
 	return false;
 }
-bool BijoutierTile::action(Player& player){
+bool BijoutierTile::action(Player& player) const {
 	if(player.gold >= 2) {
 		player.gold -= 2;
 		player.jewel += min(player.getNumFreeResources(), 3);
@@ -88,7 +82,7 @@ bool BijoutierTile::action(Player& player){
 	}
 	return false;
 }
-bool FabriquantCharretteTile::action(Player& player){
+bool FabriquantCharretteTile::action(Player& player) const {
 	if(player.gold >= 7) {
 		player.gold -= 7;
 		player.cart += 3;
@@ -96,7 +90,7 @@ bool FabriquantCharretteTile::action(Player& player){
 	}
 	return false;
 }
-bool PetitMarcheTile::action(Player& player){
+bool PetitMarcheTile::action(Player& player) const {
 	if(player.fabric >= 1 && player.spice >= 1 && player.jewel >= 1) {
 		player.fabric -= 1;
 		player.spice -= 1;
@@ -106,7 +100,7 @@ bool PetitMarcheTile::action(Player& player){
 	}
 	return false;
 }
-bool MarcheEpicesTile::action(Player& player){
+bool MarcheEpicesTile::action(Player& player) const {
 	if(player.spice >= 3) {
 		player.spice -= 3;
 		player.gold += 6;
@@ -114,7 +108,7 @@ bool MarcheEpicesTile::action(Player& player){
 	}
 	return false;
 }
-bool MarcheBijouxTile::action(Player& player){
+bool MarcheBijouxTile::action(Player& player) const {
 	if(player.jewel >= 3) {
 		player.jewel -= 3;
 		player.gold += 6;
@@ -122,7 +116,7 @@ bool MarcheBijouxTile::action(Player& player){
 	}
 	return false;
 }
-bool MarcheTissusTile::action(Player& player){
+bool MarcheTissusTile::action(Player& player) const {
 	if(player.fabric >= 3) {
 		player.fabric -= 3;
 		player.gold += 6;
@@ -130,7 +124,7 @@ bool MarcheTissusTile::action(Player& player){
 	}
 	return false;
 }
-bool MarcheNoirTile::action(Player& player){
+bool MarcheNoirTile::action(Player& player) const {
 	if(player.gold >= 1) {
 		player.gold -= 1;
 		int numResources = rand() % 5;
@@ -147,7 +141,7 @@ bool MarcheNoirTile::action(Player& player){
 	}
 	return false;
 }
-bool CasinoTile::action(Player& player){
+bool CasinoTile::action(Player& player) const {
 	if(player.gold >= 1) {
 		player.gold -= 1;
 		int n = rand() % 10;
@@ -161,8 +155,8 @@ bool CasinoTile::action(Player& player){
 	}
 	return false;
 }
-int MarchandGemmesTile::gemCost = 12;
-bool MarchandGemmesTile::action(Player& player){
+unsigned int MarchandGemmesTile::gemCost = 12;
+bool MarchandGemmesTile::action(Player& player) const {
 	if(player.gold >= MarchandGemmesTile::gemCost) {
 		player.gold -= MarchandGemmesTile::gemCost;
 		MarchandGemmesTile::gemCost++;
@@ -171,7 +165,7 @@ bool MarchandGemmesTile::action(Player& player){
 	}
 	return false;
 }
-bool PalaisTile::action(Player& player){
+bool PalaisTile::action(Player& player) const {
 	if(player.fabric >= 5 && player.spice >= 5 && player.jewel >= 5) {
 		player.fabric -= 5;
 		player.spice -= 5;
@@ -182,6 +176,9 @@ bool PalaisTile::action(Player& player){
 	return false;
 }
 
+Tile* DesertTile::clone() const {
+	return new DesertTile(*this);
+}
 Tile* RestaurantTile::clone() const {
 	return new RestaurantTile(*this);
 }
@@ -225,6 +222,7 @@ Tile* PalaisTile::clone() const {
 
 ostream& operator<<(ostream &out, const Tile& tile){
 	out << tile.type << endl;
+	return out;
 }
 
 //TileFactory
@@ -233,7 +231,7 @@ TileFactory::TileFactory(int _nTiles) {
 	for(int i = 0; i < _nTiles - overlap; ++i){
 		Tile *t;
 		switch(i%14) {
-			case 0:	 t = new Tile();                    break;
+			case 0:	 t = new DesertTile();              break;
 			case 1:  t = new RestaurantTile();          break;
 			case 2:	 t = new MarchandEpiceTile();	      break;
 			case 3:	 t = new MarchandTissusTile();      break;
@@ -249,10 +247,10 @@ TileFactory::TileFactory(int _nTiles) {
 			case 13: t = new PalaisTile();              break;
 			default:                                    break;
 		}
-		tiles.push_back(*t);
+		tiles.push_back(t);
 	}
 	for(int i = 0; i < overlap; ++i)
-		tiles.push_back(*(new Tile()));
+		tiles.push_back(new DesertTile());
 	random_shuffle(tiles.begin(), tiles.end());
 }
 
@@ -264,7 +262,7 @@ TileFactory* TileFactory::get(int _nTiles) {
 }
 
 Tile* TileFactory::next() {
-		Tile *t = &(tiles.back());
+		Tile *t = tiles.back();
 		tiles.pop_back();
 		return t;
 }
