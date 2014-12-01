@@ -40,7 +40,6 @@ GameBoard<Tile,Player,6,6> setup(){
 		for (int j=0; j<6; j++){
 
 			const Tile *t = &(_gb.getTile(i, j));
-			cout << (*t).type << endl;
 
 			if((*t).type == "RestaurantTile"){
 				for (int x = 0; x < playerNames.size(); ++x){
