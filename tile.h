@@ -10,7 +10,7 @@ class Tile{
 	public:
 		Tile();
 		bool operator==(const Tile &t);
-		virtual bool action(Player& player);
+		virtual bool action(Player& player) const;
 		virtual Tile* clone();
 };
 

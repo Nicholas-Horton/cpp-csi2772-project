@@ -10,7 +10,7 @@ bool Tile::operator==(const Tile &t){
 	return false; //TODO: complete
 }
 
-bool Tile::action(Player& player){
+bool Tile::action(Player& player) const{
 	return true; //TODO: implement subclasses, revise implementation for tile
 }
 
