@@ -69,7 +69,7 @@ bool takeTurn( GameBoard<Tile,Player,6,6> &gb, const std::string &pName) {
 		// si le joueur peut effectuer l’action
 
 		cout << "You arrive at a " << (*t).type << "." << endl << endl;
-		if ((p.canAct() && (*t).type != "Tile" ) || (*t).type == "RestaurantTile") {
+		if ((p.canAct() && (*t).type != "DesertTile" ) || (*t).type == "RestaurantTile") {
 
 			bool makeAction;
 			cout << "Would you like to take an action? (true or false?)" << endl;
