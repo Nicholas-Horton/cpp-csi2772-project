@@ -159,6 +159,11 @@ class GameBoard{
 			}
 			return tileGrid[*y][*x];
 		}
+
+		bool win(const string& playerName){
+			J player = getPlayer(playerName);
+			return player.ruby >= 5;
+		}
 };
 
 #endif //GAMEBOARD_H

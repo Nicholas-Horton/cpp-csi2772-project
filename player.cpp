@@ -1,6 +1,22 @@
 #include "player.h"
 
 Player::Player(){
+	name = "NO_NAME";
+
+	cart = 9;
+
+	gold = 5;
+	ruby = 0;
+	spice = 1;
+	fabric = 1;
+	jewel = 1;
+
+	food = 10;
+}
+
+Player::Player(string _name){
+	name = _name;
+
 	cart = 9;
 
 	gold = 5;
@@ -39,3 +55,17 @@ void Player::eat(){
 int Player::getNumFreeResources() {
 	return cart - gold + ruby + spice + fabric + jewel;
 }
+
+ostream& operator<<(ostream &out, Player& player){
+	out << "=== Player " << player.name << " ===" << endl;
+	out << "gold   = " << player.gold << endl;
+	out << "ruby   = " << player.ruby << endl;
+	out << "spice  = " << player.spice << endl;
+	out << "fabric = " << player.fabric << endl;
+	out << "jewel  = " << player.jewel << endl;
+	out << "food   = " << player.food << endl;
+	out << "You have " << player.getNumFreeResources() << " free inventory slots remaining." << endl;
+
+	return out;
+}
+

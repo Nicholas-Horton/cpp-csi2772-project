@@ -1,17 +1,35 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <time.h>
+#include <exception>
+#include <stdexcept>
 #include "gameboard.h"
 #include "tile.h"
 #include "player.h"
-#include <time.h>
+
 
 bool isPaused;
 bool playerHasWon;
 GameBoard<Tile,Player,6,6> gb;
+vector<string> playerNames;
 
+void initializePlayers(){
+	int numPlayers;
+	cout << "How many players are there?"
+	cin >> numPlayers;
+	for (int i(0); i < numPlayers; i++){
+		cout << "What is the name of player " << i << "?";
+		string temp;
+		cin >> temp;
+		playerNames.push_back(temp);
+	}
+
+}
 
 GameBoard<Tile,Player,6,6> setup(){
+	initializePlayers();
+
 	GameBoard<Tile,Player,6,6> _gb;
 	TileFactory *tf= TileFactory.get(6*6);
 	for (int i=0;i<6; i++)
@@ -74,7 +92,7 @@ void runGame(){
 		if (!isPaused){                //THIS IS FROM THE INSTRUCTIONS... I THINK IT IS WRONG
 			for ( auto pName : playerNames ) {
 				do {
-					cout<<getPlayer(pName);
+					cout<<gb.getPlayer(pName);
 				} while (!takeTurn(gb,pName));
 				if ( gb.win(pName) ) break;
 			}
