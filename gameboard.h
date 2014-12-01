@@ -108,12 +108,13 @@ class GameBoard{
 			int x, y;
 			getCoordinate(playerTile, y, x);
 			//J player = getPlayer(playerName);
+			J player;
 
 			for (std::list<J>::const_iterator iterator = playerGrid[y][x].begin(),
 					end = playerGrid[y][x].end();
 					iterator != end; ++iterator) {
 					if (player.name == *iterator.name){
-						J player = *iterator;
+						player = *iterator;
 						break;
 					}
 			}
