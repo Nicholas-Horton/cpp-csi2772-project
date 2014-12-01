@@ -52,11 +52,11 @@ void Player::eat(){
 	}
 }
 
-int Player::getNumFreeResources() {
+int Player::getNumFreeResources() const {
 	return cart - gold + ruby + spice + fabric + jewel;
 }
 
-ostream& operator<<(ostream &out, Player& player){
+ostream& operator<<(ostream &out, const Player& player){
 	out << "=== Player " << player.name << " ===" << endl;
 	out << "gold   = " << player.gold << endl;
 	out << "ruby   = " << player.ruby << endl;

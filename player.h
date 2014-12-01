@@ -31,7 +31,7 @@ class Player{
 	// reduit le nombre de nourritures de 1 si food > 0
 	void eat();
 	// nombre de resources de libres
-	int getNumFreeResources();
+	int getNumFreeResources() const;
 };
 
 ostream& operator<<(ostream &out, const Player& player);
