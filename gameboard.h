@@ -68,7 +68,7 @@ class GameBoard{
 
 			for (int i = 0; i < Y; ++i) {
 			  for (int j = 0; j < X; ++j) {
-			    tileGrid[i][j] = other[i][j];
+			    tileGrid[i][j] = other.tileGrid[i][j];
 			  }
 			}
 
