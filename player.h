@@ -23,6 +23,7 @@ class Player{
 
 	Player();
 	Player(string _name);
+	Player(const Player& other);
 
 	// retourne vrai si food > 0
 	bool canAct() const;

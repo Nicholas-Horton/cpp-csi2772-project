@@ -28,6 +28,20 @@ Player::Player(string _name){
 	food = 10;
 }
 
+Player::Player(const Player& other){
+	name = other.name;
+
+	cart = other.cart;
+
+	gold = other.gold;
+	ruby = other.ruby;
+	spice = other.spice;
+	fabric = other.fabric;
+	jewel = other.jewel;
+
+	food = other.food;
+}
+
 // retourne vrai si food > 0
 bool Player::canAct() const{
 	return food > 0;
