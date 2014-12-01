@@ -107,7 +107,7 @@ void runGame(){
 		if (!isPaused){          //THIS IS FROM THE INSTRUCTIONS... I THINK IT IS WRONG
 			for ( auto pName : playerNames ) {
 				do {
-					cout<<gb.getPlayer(pName); //IT CRASHES HERE
+					cout << gb.getPlayer(pName); //IT CRASHES HERE
 				} while (!takeTurn(gb,pName));
 				if ( gb.win(pName) ) break;
 			}
