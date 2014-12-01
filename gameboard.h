@@ -42,7 +42,7 @@ class GameBoard{
 		void getCoordinate(const T &tile, int *row, int *col) const{
 			for (int i(0); i < Y; i++)
 				for (int j(0); j < X; j++){
-					if (tileGrid == tile){
+					if (tileGrid[row][col] == tile){
 						*row = i;
 						*col = i;
 						return;
