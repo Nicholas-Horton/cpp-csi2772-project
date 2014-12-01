@@ -42,7 +42,7 @@ GameBoard<Tile,Player,6,6> setup(){
 			const Tile *t = &(_gb.getTile(i, j));
 
 			if((*t).type == "RestaurantTile"){
-				for (int x = 0; x < playerNames.size(); ++x){
+				for (unsigned int x = 0; x < playerNames.size(); ++x){
 					_gb.addPlayer(*(new Player(playerNames[x])), i, j);
 				}
 				return _gb;
@@ -69,7 +69,7 @@ bool takeTurn( GameBoard<Tile,Player,6,6> &gb, const std::string &pName) {
 		// si le joueur peut effectuer l’action
 
 		cout << "You arrive at a " << (*t).type << "." << endl << endl;
-		if (p.canAct() && (*t).type != "Tile" || (*t).type == "RestaurantTile") {
+		if ((p.canAct() && (*t).type != "Tile" ) || (*t).type == "RestaurantTile") {
 
 			bool makeAction;
 			cout << "Would you like to take an action? (true or false?)" << endl;

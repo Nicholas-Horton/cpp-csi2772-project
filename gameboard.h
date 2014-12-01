@@ -176,6 +176,7 @@ class GameBoard{
 						return result;
 					}
 				}
+			throw "TILE DOES NOT EXIST";
 		}
 
 		const T& move(enum Move move, const string& playerName ){
