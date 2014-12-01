@@ -110,10 +110,10 @@ void runGame(){
 	}
 
 	while (!playerHasWon){
-		if (!isPaused){          //THIS IS FROM THE INSTRUCTIONS... I THINK IT IS WRONG
+		if (!isPaused){
 			for ( auto pName : playerNames ) {
 				do {
-					cout << gb.getPlayer(pName); //IT CRASHES HERE
+					cout << gb.getPlayer(pName);
 				} while (!takeTurn(gb,pName));
 				if ( gb.win(pName) ) break;
 			}

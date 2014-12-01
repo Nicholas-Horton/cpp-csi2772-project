@@ -34,7 +34,7 @@ std::istream& operator>>( std::istream& is, Move& i ){
 template <typename T, typename J, int X, int Y> //T for tile, J for player, X for horizontal axis, Y for vertical axis
 class GameBoard{
 	private:
-		T*** tileGrid;										//CHECKME
+		T*** tileGrid;
 		list<J> (*playerGrid)[X];
 
 		void checkBounds(int rowVal, int colVal) const {
@@ -47,7 +47,7 @@ class GameBoard{
 
 	public:
 		GameBoard(){
-			tileGrid = new T**[Y];											//CHECKME
+			tileGrid = new T**[Y];
 			for (int i(0); i < Y; ++i){
 				tileGrid[i] = new T*[X];
 			}
@@ -61,7 +61,7 @@ class GameBoard{
 		}
 
 		GameBoard(const GameBoard& other){
-			tileGrid = new T**[Y];											//CHECKME
+			tileGrid = new T**[Y];
 			for (int i(0); i < Y; ++i){
 				tileGrid[i] = new T*[X];
 			}
@@ -83,12 +83,12 @@ class GameBoard{
 
 		void add(const T& tile, int row, int col){
 			checkBounds(row, col);
-			tileGrid[row][col] = tile.clone();										//CHECKME
+			tileGrid[row][col] = tile.clone();
 		}
 
 		const T& getTile(int row, int col) const{
 			checkBounds(row, col);
-			return *(tileGrid[row][col]);										//CHECKME
+			return *(tileGrid[row][col]);
 		}
 
 		const T& getTile(const string& playerName) const{
@@ -98,7 +98,7 @@ class GameBoard{
 						end = playerGrid[i][j].end();
 						iterator != end; ++iterator) {
 						if (playerName == (*iterator).name){
-							return *(tileGrid[i][j]);										//CHECKME
+							return *(tileGrid[i][j]);
 						}
 					}
 				}
@@ -108,7 +108,7 @@ class GameBoard{
 		void getCoordinate(const T &tile, int *row, int *col) const{
 			for (int i(0); i < Y; i++)
 				for (int j(0); j < X; j++){
-					if (*(tileGrid[i][j]) == tile){										//CHECKME
+					if (*(tileGrid[i][j]) == tile){
 						*row = i;
 						*col = j;
 						return;
@@ -127,7 +127,7 @@ class GameBoard{
 							*row = i;
 							*col = j;
 							return;
-							}								//CHECKME
+							}
 					}
 				}
 			throw "PLAYER NOT FOUND";
@@ -136,7 +136,7 @@ class GameBoard{
 		void addPlayer(J player, int row, int col){
 			checkBounds(row, col);
 			playerGrid[row][col].push_front(player);
-		} // ajoute un joueur sur le plateau
+		}
 
 		void setPlayer(J player){
 			for (int i(0); i < Y; i++)
@@ -184,7 +184,6 @@ class GameBoard{
 			int *y = new int;
 			getPlayerCoordinate(playerName, y, x);
 
-			//J player = getPlayer(playerName);
 			J * player = new J();
 
 			for (typename list<J>::iterator iterator = playerGrid[*y][*x].begin(),
