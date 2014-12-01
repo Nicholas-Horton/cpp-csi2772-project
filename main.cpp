@@ -16,10 +16,10 @@ vector<string> playerNames;
 
 void initializePlayers(){
 	int numPlayers;
-	cout << "How many players are there?";
+	cout << "How many players are there? " << endl;
 	cin >> numPlayers;
 	for (int i(0); i < numPlayers; i++){
-		cout << "What is the name of player " << i+1 << "?";
+		cout << "What is the name of player " << i+1 << "? " << endl;
 		string temp;
 		cin >> temp;
 		playerNames.push_back(temp);
