@@ -2,22 +2,40 @@
 #define GAMEBOARD_H
 
 #include <iostream>
+#include <string>
 #include <list>
 #include <vector>
 
 using namespace std;
 
 enum Move {UP, DOWN, LEFT, RIGHT};
+std::istream& operator>>( std::istream& is, Move& i ){
+	string tmp;
+
+	if ( is >> tmp ){
+		if(tmp == "UP" || tmp == "w"){
+			i = UP;
+		}else if (tmp == "DOWN" || tmp == "s"){
+			i = DOWN;
+		}else if (tmp == "LEFT" || tmp == "a"){
+			i = LEFT;
+		}else if (tmp == "RIGHT" || tmp == "d"){
+			i = RIGHT;
+		}
+	}
+
+		return is;
+}
 
 template <typename T, typename J, int X, int Y> //T for tile, J for player, X for horizontal axis, Y for vertical axis
 class GameBoard{
 	private:
-		T **tileGrid;
-		list<J> **playerGrid;
+		T (*tileGrid)[X];
+		list<J> (*playerGrid)[X];
 	public:
 		GameBoard(){
 			tileGrid = new T[Y][X];
-			playerGrid = new list<J>;
+			playerGrid = new list<J>[Y][X];
 		}
 
 		GameBoard(const GameBoard& other){
@@ -106,13 +124,14 @@ class GameBoard{
 
 		const T& move(enum Move move, const string& playerName ){ //TODO: uncertain about implementation
 			T playerTile = getTile(playerName);
-			int x, y;
+			int *x;
+			int *y;
 			getCoordinate(playerTile, y, x);
 			//J player = getPlayer(playerName);
 			J player;
 
-			for (typename list<J>::const_iterator iterator = playerGrid[y][x].begin(),
-					end = playerGrid[y][x].end();
+			for (typename list<J>::const_iterator iterator = playerGrid[*y][*x].begin(),
+					end = playerGrid[*y][*x].end();
 					iterator != end; ++iterator) {
 					if (player.name == *iterator.name){
 						player = *iterator;
@@ -122,20 +141,20 @@ class GameBoard{
 
 			switch(move){
 				case UP    :
-					addPlayer(player, y-1, x);
+					addPlayer(player, *y-1, *x);
 					break;
 				case DOWN  :
-					addPlayer(player, y+1, x);
+					addPlayer(player, *y+1, *x);
 					break;
 				case LEFT  :
-					addPlayer(player, y, x-1);
+					addPlayer(player, *y, *x-1);
 					break;
 				case RIGHT :
-					addPlayer(player, y, x+1);
+					addPlayer(player, *y, *x+1);
 					break;
 			}
 
-			playerGrid[y][x].remove(player);
+			playerGrid[*y][*x].remove(player);
 
 		}
 };
