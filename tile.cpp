@@ -22,8 +22,7 @@ bool RestaurantTile::action(Player& player){
 	player.food = 10;
 }
 bool MarchandEpiceTile::action(Player& player){
-	if(player.canAct() && player.gold >= 2) {
-		player.eat();
+	if(player.gold >= 2) {
 		player.gold -= 2;
 		player.spice += min(player.getNumFreeResources(), 3);
 		return true;
@@ -31,8 +30,7 @@ bool MarchandEpiceTile::action(Player& player){
 	return false;
 }
 bool MarchandTissusTile::action(Player& player){
-	if(player.canAct() && player.gold >= 2) {
-		player.eat();
+	if(player.gold >= 2) {
 		player.gold -= 2;
 		player.fabric += min(player.getNumFreeResources(), 3);
 		return true;
@@ -40,8 +38,7 @@ bool MarchandTissusTile::action(Player& player){
 	return false;
 }
 bool BijoutierTile::action(Player& player){
-	if(player.canAct() && player.gold >= 2) {
-		player.eat();
+	if(player.gold >= 2) {
 		player.gold -= 2;
 		player.jewel += min(player.getNumFreeResources(), 3);
 		return true;
@@ -49,8 +46,7 @@ bool BijoutierTile::action(Player& player){
 	return false;
 }
 bool FabriquantCharretteTile::action(Player& player){
-	if(player.canAct() && player.gold >= 7) {
-		player.eat();
+	if(player.gold >= 7) {
 		player.gold -= 7;
 		player.cart += 3;
 		return true;
@@ -58,8 +54,7 @@ bool FabriquantCharretteTile::action(Player& player){
 	return false;
 }
 bool PetitMarcheTile::action(Player& player){
-	if(player.canAct() && player.fabric >= 1 && player.spice >= 1 && player.jewel >= 1) {
-		player.eat();
+	if(player.fabric >= 1 && player.spice >= 1 && player.jewel >= 1) {
 		player.fabric -= 1;
 		player.spice -= 1;
 		player.jewel -= 1;
@@ -69,8 +64,7 @@ bool PetitMarcheTile::action(Player& player){
 	return false;
 }
 bool MarcheEpicesTile::action(Player& player){
-	if(player.canAct() && player.spice >= 3) {
-		player.eat();
+	if(player.spice >= 3) {
 		player.spice -= 3;
 		player.gold += 6;
 		return true;
@@ -78,8 +72,7 @@ bool MarcheEpicesTile::action(Player& player){
 	return false;
 }
 bool MarcheBijouxTile::action(Player& player){
-	if(player.canAct() && player.jewel >= 3) {
-		player.eat();
+	if(player.jewel >= 3) {
 		player.jewel -= 3;
 		player.gold += 6;
 		return true;
@@ -87,8 +80,7 @@ bool MarcheBijouxTile::action(Player& player){
 	return false;
 }
 bool MarcheTissusTile::action(Player& player){
-	if(player.canAct() && player.fabric >= 3) {
-		player.eat();
+	if(player.fabric >= 3) {
 		player.fabric -= 3;
 		player.gold += 6;
 		return true;
@@ -96,8 +88,7 @@ bool MarcheTissusTile::action(Player& player){
 	return false;
 }
 bool MarcheNoirTile::action(Player& player){
-	if(player.canAct() && player.gold >= 1) {
-		player.eat();
+	if(player.gold >= 1) {
 		player.gold -= 1;
 		int numResources = rand() % 5;
 		for (int i = 0; i < numResources; ++i){
@@ -114,8 +105,7 @@ bool MarcheNoirTile::action(Player& player){
 	return false;
 }
 bool CasinoTile::action(Player& player){
-	if(player.canAct() && player.gold >= 1) {
-		player.eat();
+	if(player.gold >= 1) {
 		player.gold -= 1;
 		int n = rand() % 10;
 		if(n >= 4 && n <= 6 )
@@ -130,8 +120,7 @@ bool CasinoTile::action(Player& player){
 }
 int MarchandGemmesTile::gemCost = 12;
 bool MarchandGemmesTile::action(Player& player){
-	if(player.canAct() && player.gold >= MarchandGemmesTile::gemCost) {
-		player.eat();
+	if(player.gold >= MarchandGemmesTile::gemCost) {
 		player.gold -= MarchandGemmesTile::gemCost;
 		MarchandGemmesTile::gemCost++;
 		player.ruby++;
@@ -140,8 +129,7 @@ bool MarchandGemmesTile::action(Player& player){
 	return false;
 }
 bool PalaisTile::action(Player& player){
-	if(player.canAct() && player.fabric >= 5 && player.spice >= 5 && player.jewel >= 5) {
-		player.eat();
+	if(player.fabric >= 5 && player.spice >= 5 && player.jewel >= 5) {
 		player.fabric -= 5;
 		player.spice -= 5;
 		player.jewel -= 5;

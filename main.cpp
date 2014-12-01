@@ -32,7 +32,7 @@ bool takeTurn( GameBoard<Tile,Player,6,6> &bg, const std::string &pName) {
 		Player p = bg.getPlayer( pName );
 
 		// si le joueur peut effectuer l’action
-		if (p.canAct()) {
+		if (p.canAct()) { //TODO: logic doesn't permit restaurant action if no food
 			bool makeAction;
 			// lui demander si il desire effectuer l’action
 			cin>>makeAction;
