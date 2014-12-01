@@ -11,7 +11,7 @@ bool Tile::operator==(const Tile &t){
 }
 
 bool Tile::action(Player& player) const{
-	return true; //TODO: implement subclasses, revise implementation for tile
+	return true;
 }
 
 Tile* Tile::clone() const{
