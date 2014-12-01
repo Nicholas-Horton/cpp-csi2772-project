@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <stdlib.h>
 
+//Tile
 Tile::Tile(){
 }
 
@@ -142,4 +143,66 @@ bool PalaisTile::action(Player& player){
 
 ostream& operator<<(ostream &out, const Tile& tile){
 	// TODO: put something here
+}
+
+//TileFactory
+TileFactory::TileFactory(int _nTiles) {
+	current = 0;
+	for(int i = 0; i < _nTiles; ++i){
+		Tile *t;
+		int n = rand() % 14;
+		switch(n) {
+			case 0:
+				break;
+			case 1:
+				t = new RestaurantTile();
+				break;
+			case 2:
+				t = new MarchandEpiceTile();
+				break;
+			case 3:
+				t = new MarchandTissusTile();
+				break;
+			case 4:
+				t = new BijoutierTile();
+				break;
+			case 5:
+				t = new FabriquantCharretteTile();
+				break;
+			case 6:
+				t = new PetitMarcheTile();
+				break;
+			case 7:
+				t = new MarcheEpicesTile();
+				break;
+			case 8:
+				t = new MarcheBijouxTile();
+				break;
+			case 9:
+				t = new MarcheTissusTile();
+				break;
+			case 10:
+				t = new MarcheNoirTile();
+				break;
+			case 11:
+				t = new CasinoTile();
+				break;
+			case 12:
+				t = new MarchandGemmesTile();
+				break;
+			case 13:
+				t = new PalaisTile();
+				break;
+		}
+		tiles.push_back(*t);
+	}
+}
+TileFactory* TileFactory::get(int _nTiles) {
+	if(_nTiles < 14)
+		return NULL;
+	static TileFactory tf(_nTiles);
+	return &tf;
+}
+Tile* TileFactory::next() {
+		return &(tiles.at(current++));
 }
