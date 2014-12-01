@@ -75,7 +75,7 @@ class GameBoard{
 		void setPlayer(J player){
 			for (int i(0); i < Y; i++)
 				for (int j(0); j < X; j++){
-					for (typename list<J>::const_iterator iterator = playerGrid[i][j].begin(),
+					for (typename list<J>::iterator iterator = playerGrid[i][j].begin(),
 						end = playerGrid[i][j].end();
 						iterator != end; ++iterator) {
 						if (player.name == (*iterator).name){
@@ -133,7 +133,7 @@ class GameBoard{
 			//J player = getPlayer(playerName);
 			J player;
 
-			for (typename list<J>::const_iterator iterator = playerGrid[*y][*x].begin(),
+			for (typename list<J>::iterator iterator = playerGrid[*y][*x].begin(),
 					end = playerGrid[*y][*x].end();
 					iterator != end; ++iterator) {
 					if (player.name == (*iterator).name){
