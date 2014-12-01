@@ -17,7 +17,7 @@ class GameBoard{
 	public:
 		GameBoard(){
 			tileGrid = new T[Y][X];
-			playerGrid = new list<J>
+			playerGrid = new list<J>;
 		}
 
 		GameBoard(const GameBoard& other){
@@ -36,7 +36,7 @@ class GameBoard{
 		}
 
 		const T& getTile(int row, int col) const{
-			return T[row][col];
+			return tileGrid[row][col];
 		}
 
 		void getCoordinate(const T &tile, int *row, int *col) const{
@@ -103,8 +103,39 @@ class GameBoard{
 				}
 		}
 
-		const T& move(enum Move move, const std::string& playerName ){
+		const T& move(enum Move move, const std::string& playerName ){ //TODO: uncertain about implementation
+			switch(move){
 
+				T playerTile = getTile(playerName)
+				int x, y;
+				getCoordinate(playerTile, y, x);
+				//J player = getPlayer(playerName);
+
+				for (std::list<J>::const_iterator iterator = playerGrid[i][j].begin(),
+						end = playerGrid[i][j].end();
+						iterator != end; ++iterator) {
+						if (player.name == *iterator.name){
+							J player = *iterator;
+							break;
+						}
+				}
+
+				case UP    :
+					addPlayer(player, y-1, x);
+					break;
+				case DOWN  :
+					addPlayer(player, y+1, x);
+					break;
+				case LEFT  :
+					addPlayer(player, y, x-1);
+					break;
+				case RIGHT :
+					addPlayer(player, y, x+1);
+					break;
+
+				playerGrid[y][x].remove(player);
+
+			}
 		}
 };
 
