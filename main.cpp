@@ -14,6 +14,7 @@
 
 bool isPaused;
 bool playerHasWon;
+string winnerName;
 GameBoard<Tile,Player,6,6> gb;
 vector<string> playerNames;
 
@@ -119,10 +120,16 @@ void runGame(){
 					cout << gb;
 					cout << gb.getPlayer(pName);
 				} while (!takeTurn(gb,pName));
-				if ( gb.win(pName) ) break;
+				if ( gb.win(pName) ){
+					playerHasWon = true;
+					winnerName = pName;
+					break;
+				}
 			}
 		}
 	}
+	cout << winnerName << " has collected enough rubies!" << endl;
+	cout << winnerName << " has won the game!" << endl;
 }
 
 int main(){
