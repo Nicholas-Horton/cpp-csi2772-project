@@ -184,25 +184,25 @@ class GameBoard{
 			getPlayerCoordinate(playerName, y, x);
 
 			//J player = getPlayer(playerName);
-			J * player = new J;
+			J * player = new J();
 
 			for (typename list<J>::iterator iterator = playerGrid[*y][*x].begin(),
 					end = playerGrid[*y][*x].end();
 					iterator != end; ++iterator) {
-					if ((*player).name == (*iterator).name){
+					if (playerName == (*iterator).name){
 						*player =  *iterator;
 						switch(move){
 							case UP    :
-								addPlayer(*(new J(*player)), *y = *y - 1, *x);
+								addPlayer(*(new J(*player)), *y -= 1, *x);
 								break;
 							case DOWN  :
-								addPlayer(*(new J(*player)), *y = *y + 1, *x);
+								addPlayer(*(new J(*player)), *y += 1, *x);
 								break;
 							case LEFT  :
-								addPlayer(*(new J(*player)), *y, *x = *x - 1);
+								addPlayer(*(new J(*player)), *y, *x -= 1);
 								break;
 							case RIGHT :
-								addPlayer(*(new J(*player)), *y, *x = *x + 1);
+								addPlayer(*(new J(*player)), *y, *x += 1);
 								break;
 						}
 						(playerGrid[*y][*x]).erase(iterator);
