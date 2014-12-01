@@ -117,6 +117,22 @@ class GameBoard{
 			throw "TILE NOT FOUND";
 		}
 
+		void getPlayerCoordinate(const string& playerName, int *row, int *col) const{
+			for (int i(0); i < Y; i++)
+				for (int j(0); j < X; j++){
+					for (typename list<J>::const_iterator iterator = playerGrid[i][j].begin(),
+						end = playerGrid[i][j].end();
+						iterator != end; ++iterator) {
+						if (playerName == (*iterator).name){
+							*row = i;
+							*col = j;
+							return;
+							}								//CHECKME
+					}
+				}
+			throw "PLAYER NOT FOUND";
+		}
+
 		void addPlayer(J player, int row, int col){
 			checkBounds(row, col);
 			playerGrid[row][col].push_front(player);
@@ -163,10 +179,10 @@ class GameBoard{
 		}
 
 		const T& move(enum Move move, const string& playerName ){
-			T playerTile = getTile(playerName);
-			int *x;
-			int *y;
-			getCoordinate(playerTile, y, x);
+			int *x = new int;
+			int *y = new int;
+			getPlayerCoordinate(playerName, y, x);
+
 			//J player = getPlayer(playerName);
 			J player;
 
