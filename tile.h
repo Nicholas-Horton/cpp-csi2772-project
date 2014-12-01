@@ -59,6 +59,7 @@ class CasinoTile : public Tile {
 };
 class MarchandGemmesTile : public Tile {
 	public:
+		static int gemCost;
 		bool action(Player& player);
 };
 class PalaisTile : public Tile {

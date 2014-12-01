@@ -13,7 +13,7 @@ bool Tile::action(Player& player){
 	return true; //TODO: implement subclasses, revise implementation for tile
 }
 
-Tile::Tile* clone(){
+Tile* Tile::clone(){
 	return new Tile(*this); //TODO: check if valid
 }
 
@@ -128,11 +128,12 @@ bool CasinoTile::action(Player& player){
 	}
 	return false;
 }
+int MarchandGemmesTile::gemCost = 12;
 bool MarchandGemmesTile::action(Player& player){
-	if(player.canAct() && player.gold >= gemCost) {
+	if(player.canAct() && player.gold >= MarchandGemmesTile::gemCost) {
 		player.eat();
-		player.gold -= gemCost;
-		gemCost++;
+		player.gold -= MarchandGemmesTile::gemCost;
+		MarchandGemmesTile::gemCost++;
 		player.ruby++;
 		return true;
 	}
