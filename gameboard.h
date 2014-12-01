@@ -74,7 +74,7 @@ class GameBoard{
 					for (typename list<J>::const_iterator iterator = playerGrid[i][j].begin(),
 						end = playerGrid[i][j].end();
 						iterator != end; ++iterator) {
-						if (player.name == *iterator.name){
+						if (playerName == *iterator.name){
 							return *iterator;
 						}
 					}
@@ -87,7 +87,7 @@ class GameBoard{
 					for (typename list<J>::const_iterator iterator = playerGrid[i][j].begin(),
 						end = playerGrid[i][j].end();
 						iterator != end; ++iterator) {
-						if (player.name == *iterator.name){
+						if (playerName == *iterator.name){
 							return tileGrid[i][j];
 						}
 					}
@@ -98,13 +98,14 @@ class GameBoard{
 			for (int i(0); i < Y; i++)
 				for (int j(0); j < X; j++){
 					if(tileGrid[i][j] == tile){
-						return vector<J> result{begin(playerGrid[i][j]), end(playerGrid[i][j])};
+						vector<J> result{ begin(playerGrid[i][j]), end(playerGrid[i][j]) };
+						return result;
 					}
 				}
 		}
 
 		const T& move(enum Move move, const string& playerName ){ //TODO: uncertain about implementation
-			T playerTile = getTile(playerName)
+			T playerTile = getTile(playerName);
 			int x, y;
 			getCoordinate(playerTile, y, x);
 			//J player = getPlayer(playerName);
