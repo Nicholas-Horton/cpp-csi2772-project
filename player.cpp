@@ -67,7 +67,7 @@ void Player::eat(){
 }
 
 int Player::getNumFreeResources() const {
-	return cart - gold + ruby + spice + fabric + jewel;
+	return cart - (ruby + spice + fabric + jewel);
 }
 
 ostream& operator<<(ostream &out, const Player& player){

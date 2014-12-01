@@ -63,17 +63,17 @@ bool takeTurn( GameBoard<Tile,Player,6,6> &gb, const std::string &pName) {
 		cout << "You are at coordinate X: " << *x << " Y: " << *y << endl;
 		cout << "What is your move?" << endl;
 		cin>> m;
-		const Tile t = gb.move( m, pName );
+		const Tile *t = &(gb.move( m, pName ));
 		Player p = gb.getPlayer( pName );
 
 		// si le joueur peut effectuer l’action
 		if (p.canAct()) { //TODO: logic doesn't permit restaurant action if no food
 			bool makeAction;
-			cout << "You arrive at a " << t.type << "." << endl;
+			cout << "You arrive at a " << (*t).type << "." << endl;
 			cout << "Would you like to take an action? (true or false?)" << endl;
 			cin>>makeAction;
 			if ( makeAction ) {
-				std::vector<Player> opL = gb.getPlayers( t );
+				std::vector<Player> opL = gb.getPlayers( *t );
 
 				if (p.gold >= opL.size()) {
 					// consommer une nourriture
@@ -85,7 +85,7 @@ bool takeTurn( GameBoard<Tile,Player,6,6> &gb, const std::string &pName) {
 						gb.setPlayer( op );
 					}
 					// effectuer l’action
-					t.action( p );
+					t->action( p );
 					gb.setPlayer( p );
 				}
 			}
