@@ -203,7 +203,7 @@ class GameBoard{
 								break;
 							case RIGHT :
 								addPlayer(player, *y, ++(*x));
-
+								break;
 						}
 						(playerGrid[*y][*x]).erase(iterator);
 						break;
