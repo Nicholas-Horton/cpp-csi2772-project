@@ -35,6 +35,21 @@ GameBoard<Tile,Player,6,6> setup(){
 	for (int i=0;i<6; i++)
 		for (int j=0; j<6; j++)
 			_gb.add(*tf->next(),i,j);
+
+	for (int i=0;i<6; i++)
+		for (int j=0; j<6; j++){
+
+			const Tile *t = &(_gb.getTile(i, j));
+			const RestaurantTile *r = dynamic_cast<const RestaurantTile*>(t);
+
+			if(r != 0){
+				for (int x = 0; x < playerNames.size(); ++x){
+					_gb.addPlayer(*(new Player(playerNames[x])), i, j);
+				}
+				break;
+			}
+		}
+
 	return _gb;
 }
 
@@ -89,10 +104,10 @@ void runGame(){
 	}
 
 	while (!playerHasWon){
-		if (!isPaused){                //THIS IS FROM THE INSTRUCTIONS... I THINK IT IS WRONG
+		if (!isPaused){          //THIS IS FROM THE INSTRUCTIONS... I THINK IT IS WRONG
 			for ( auto pName : playerNames ) {
 				do {
-					cout<<gb.getPlayer(pName);
+					cout<<gb.getPlayer(pName); //IT CRASHES HERE
 				} while (!takeTurn(gb,pName));
 				if ( gb.win(pName) ) break;
 			}
