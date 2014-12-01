@@ -19,7 +19,7 @@ void initializePlayers(){
 	cout << "How many players are there?";
 	cin >> numPlayers;
 	for (int i(0); i < numPlayers; i++){
-		cout << "What is the name of player " << i << "?";
+		cout << "What is the name of player " << i+1 << "?";
 		string temp;
 		cin >> temp;
 		playerNames.push_back(temp);
