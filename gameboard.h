@@ -34,6 +34,8 @@ std::istream& operator>>( std::istream& is, Move& i ){
 template <typename T, typename J, int X, int Y> //T for tile, J for player, X for horizontal axis, Y for vertical axis
 class GameBoard{
 	private:
+	public:
+
 		T*** tileGrid;
 		list<J> (*playerGrid)[X];
 
@@ -45,7 +47,6 @@ class GameBoard{
 			}
 		}
 
-	public:
 		GameBoard(){
 			tileGrid = new T**[Y];
 			for (int i(0); i < Y; ++i){
@@ -217,5 +218,24 @@ class GameBoard{
 			return player.ruby >= 5;
 		}
 };
+
+template <typename T, typename J, int X, int Y>
+ostream& operator<<(ostream &out, const GameBoard<T, J, X, Y>& _gb){
+	out << "==========================" << endl;
+	out << "  ";
+	for (int i(0); i < X; i++){
+		out << "  " << i << " ";
+	}
+	out << endl;
+	for (int i(0); i < X; i++){
+		out << i << " ";
+		for (int j(0); j < Y; j++){
+			out << "[" << *(_gb.tileGrid[i][j]) << "]";
+		}
+		out << endl;
+	}
+	out << "==========================" << endl;
+	return out;
+}
 
 #endif //GAMEBOARD_H

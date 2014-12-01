@@ -1,3 +1,6 @@
+//Julien Mageau, 6881314
+//Nicholas Horton, 6814726
+
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
@@ -113,6 +116,7 @@ void runGame(){
 		if (!isPaused){
 			for ( auto pName : playerNames ) {
 				do {
+					cout << gb;
 					cout << gb.getPlayer(pName);
 				} while (!takeTurn(gb,pName));
 				if ( gb.win(pName) ) break;

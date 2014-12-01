@@ -221,7 +221,20 @@ Tile* PalaisTile::clone() const {
 
 
 ostream& operator<<(ostream &out, const Tile& tile){
-	out << tile.type << endl;
+	if (tile.type == "DesertTile")                     out << "--";
+	else if (tile.type == "RestaurantTile")            out << "++";
+	else if (tile.type == "MarchandEpiceTile")         out << "E^";
+	else if (tile.type == "MarchandTissusTile")        out << "T^";
+	else if (tile.type == "BijoutierTile")             out << "B^";
+	else if (tile.type == "FabriquantCharretteTile")   out << "C^";
+	else if (tile.type == "PetitMarcheTile")           out << "M$";
+	else if (tile.type == "MarcheEpicesTile")          out << "E$";
+	else if (tile.type == "MarcheBijouxTile")          out << "B$";
+	else if (tile.type == "MarcheTissusTile")          out << "T$";
+	else if (tile.type == "MarcheNoirTile")            out << "N^";
+	else if (tile.type == "CasinoTile")                out << "$$";
+	else if (tile.type == "MarchandGemmesTile")        out << "R^";
+	else if (tile.type == "PalaisTile")                out << "P$";
 	return out;
 }
 
