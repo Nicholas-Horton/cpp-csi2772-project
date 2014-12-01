@@ -31,7 +31,7 @@ GameBoard<Tile,Player,6,6> setup(){
 	initializePlayers();
 
 	GameBoard<Tile,Player,6,6> _gb;
-	TileFactory *tf= TileFactory.get(6*6);
+	TileFactory *tf= TileFactory::get(6*6);
 	for (int i=0;i<6; i++)
 		for (int j=0; j<6; j++)
 			_gb.add(*tf->next(),i,j);
