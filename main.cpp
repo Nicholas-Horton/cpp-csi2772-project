@@ -41,7 +41,7 @@ GameBoard<Tile,Player,6,6> setup(){
 
 			const Tile *t = &(_gb.getTile(i, j));
 			const RestaurantTile *r = dynamic_cast<const RestaurantTile*>(t);
-
+			cout << r != 0;
 			if(r != 0){
 				for (int x = 0; x < playerNames.size(); ++x){
 					_gb.addPlayer(*(new Player(playerNames[x])), i, j);
@@ -59,6 +59,7 @@ bool takeTurn( GameBoard<Tile,Player,6,6> &gb, const std::string &pName) {
 		cin.exceptions(std::istream::failbit);
 
 		// quel est le deplacement du joueur ?
+		cout << "What is your move?" << endl;
 		cin>> m;
 		const Tile t = gb.move( m, pName );
 		Player p = gb.getPlayer( pName );
@@ -66,7 +67,7 @@ bool takeTurn( GameBoard<Tile,Player,6,6> &gb, const std::string &pName) {
 		// si le joueur peut effectuer l’action
 		if (p.canAct()) { //TODO: logic doesn't permit restaurant action if no food
 			bool makeAction;
-			// lui demander si il desire effectuer l’action
+			cout << "Would you like to take an action? (true or false?)" << endl;
 			cin>>makeAction;
 			if ( makeAction ) {
 				std::vector<Player> opL = gb.getPlayers( t );
@@ -88,7 +89,7 @@ bool takeTurn( GameBoard<Tile,Player,6,6> &gb, const std::string &pName) {
 		}
 		return true;
 	} catch ( istream::failure e ) {
-		cout << "Incorrect key pressed";
+		cout << "Incorrect key pressed" << endl;
 		cin.clear();
 	} catch ( out_of_range e ) {
 		cout<< e.what();

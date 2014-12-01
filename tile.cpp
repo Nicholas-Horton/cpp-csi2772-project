@@ -14,7 +14,7 @@ bool Tile::action(Player& player) const{
 	return true; //TODO: implement subclasses, revise implementation for tile
 }
 
-Tile* Tile::clone(){
+Tile* Tile::clone() const{
 	return new Tile(*this); //TODO: check if valid
 }
 
@@ -139,6 +139,46 @@ bool PalaisTile::action(Player& player){
 		return true;
 	}
 	return false;
+}
+
+Tile* RestaurantTile::clone() const {
+	return new RestaurantTile(*this);
+}
+Tile* MarchandEpiceTile::clone() const {
+	return new MarchandEpiceTile(*this);
+}
+Tile* MarchandTissusTile::clone() const {
+	return new MarchandTissusTile(*this);
+}
+Tile* BijoutierTile::clone() const {
+	return new BijoutierTile(*this);
+}
+Tile* FabriquantCharretteTile::clone() const {
+	return new FabriquantCharretteTile(*this);
+}
+Tile* PetitMarcheTile::clone() const {
+	return new PetitMarcheTile(*this);
+}
+Tile* MarcheEpicesTile::clone() const {
+	return new MarcheEpicesTile(*this);
+}
+Tile* MarcheBijouxTile::clone() const {
+	return new MarcheBijouxTile(*this);
+}
+Tile* MarcheTissusTile::clone() const {
+	return new MarcheTissusTile(*this);
+}
+Tile* MarcheNoirTile::clone() const {
+	return new MarcheNoirTile(*this);
+}
+Tile* CasinoTile::clone() const {
+	return new CasinoTile(*this);
+}
+Tile* MarchandGemmesTile::clone() const {
+	return new MarchandGemmesTile(*this);
+}
+Tile* PalaisTile::clone() const {
+	return new PalaisTile(*this);
 }
 
 

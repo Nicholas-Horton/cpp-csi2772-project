@@ -15,31 +15,63 @@ std::istream& operator>>( std::istream& is, Move& i ){
 	if ( is >> tmp ){
 		if(tmp == "UP" || tmp == "w"){
 			i = UP;
+			return is;
 		}else if (tmp == "DOWN" || tmp == "s"){
 			i = DOWN;
+			return is;
 		}else if (tmp == "LEFT" || tmp == "a"){
 			i = LEFT;
+			return is;
 		}else if (tmp == "RIGHT" || tmp == "d"){
 			i = RIGHT;
+			return is;
 		}
 	}
 
-		return is;
+		throw istream::failure("INVALID INPUT");
 }
 
 template <typename T, typename J, int X, int Y> //T for tile, J for player, X for horizontal axis, Y for vertical axis
 class GameBoard{
 	private:
-		T (*tileGrid)[X];
+		T*** tileGrid;										//CHECKME
 		list<J> (*playerGrid)[X];
+
+		void checkBounds(int rowVal, int colVal) const {
+			bool outOfVerticalBounds = rowVal >= Y || rowVal < 0;
+			bool outOfHorizontalBounds = colVal >= X || colVal < 0;
+			if(outOfVerticalBounds || outOfHorizontalBounds){
+				throw out_of_range("Coordinate out of bounds!");
+			}
+		}
+
 	public:
 		GameBoard(){
-			tileGrid = new T[Y][X];
+			tileGrid = new T**[Y];											//CHECKME
+			for (int i(0); i < Y; ++i){
+				tileGrid[i] = new T*[X];
+			}
+
+			for (int i = 0; i < Y; ++i) {
+			  for (int j = 0; j < X; ++j) {
+			    tileGrid[i][j] = NULL;
+			  }
+			}
 			playerGrid = new list<J>[Y][X];
 		}
 
 		GameBoard(const GameBoard& other){
-			tileGrid = new T[Y][X];
+			tileGrid = new T**[Y];											//CHECKME
+			for (int i(0); i < Y; ++i){
+				tileGrid[i] = new T*[X];
+			}
+
+			for (int i = 0; i < Y; ++i) {
+			  for (int j = 0; j < X; ++j) {
+			    tileGrid[i][j] = other[i][j];
+			  }
+			}
+
 			playerGrid = new list<J>[Y][X];
 
 			for (int i(0); i < Y; i++)
@@ -50,25 +82,43 @@ class GameBoard{
 		}
 
 		void add(const T& tile, int row, int col){
-			tileGrid[row][col] = tile;
+			checkBounds(row, col);
+			tileGrid[row][col] = tile.clone();										//CHECKME
 		}
 
 		const T& getTile(int row, int col) const{
-			return tileGrid[row][col];
+			checkBounds(row, col);
+			return *(tileGrid[row][col]);										//CHECKME
+		}
+
+		const T& getTile(const string& playerName) const{
+			for (int i(0); i < Y; i++)
+				for (int j(0); j < X; j++){
+					for (typename list<J>::const_iterator iterator = playerGrid[i][j].begin(),
+						end = playerGrid[i][j].end();
+						iterator != end; ++iterator) {
+						if (playerName == (*iterator).name){
+							return *(tileGrid[i][j]);										//CHECKME
+						}
+					}
+				}
+			throw "TILE NOT FOUND";
 		}
 
 		void getCoordinate(const T &tile, int *row, int *col) const{
 			for (int i(0); i < Y; i++)
 				for (int j(0); j < X; j++){
-					if (tileGrid[i][j] == tile){
+					if (*(tileGrid[i][j]) == tile){										//CHECKME
 						*row = i;
-						*col = i;
+						*col = j;
 						return;
 					}
 				}
+			throw "TILE NOT FOUND";
 		}
 
 		void addPlayer(J player, int row, int col){
+			checkBounds(row, col);
 			playerGrid[row][col].push_front(player);
 		} // ajoute un joueur sur le plateau
 
@@ -101,24 +151,11 @@ class GameBoard{
 			throw "PLAYER NOT FOUND";
 		}
 
-		const T& getTile(const string& playerName) const{
-			for (int i(0); i < Y; i++)
-				for (int j(0); j < X; j++){
-					for (typename list<J>::const_iterator iterator = playerGrid[i][j].begin(),
-						end = playerGrid[i][j].end();
-						iterator != end; ++iterator) {
-						if (playerName == (*iterator).name){
-							return tileGrid[i][j];
-						}
-					}
-				}
-			throw "TILE NOT FOUND";
-		}
 
 		vector<J> getPlayers(const T& tile) const{
 			for (int i(0); i < Y; i++)
 				for (int j(0); j < X; j++){
-					if(tileGrid[i][j] == tile){
+					if(*(tileGrid[i][j]) == tile){										//CHECKME
 						vector<J> result{ playerGrid[i][j].begin(), playerGrid[i][j].end() };
 						return result;
 					}
@@ -138,7 +175,6 @@ class GameBoard{
 					iterator != end; ++iterator) {
 					if (player.name == (*iterator).name){
 						player = *iterator;
-
 						switch(move){
 							case UP    :
 								addPlayer(player, --(*y), *x);
@@ -157,7 +193,7 @@ class GameBoard{
 						break;
 					}
 			}
-			return tileGrid[*y][*x];
+			return *(tileGrid[*y][*x]);
 		}
 
 		bool win(const string& playerName){
