@@ -16,7 +16,7 @@ vector<string> playerNames;
 
 void initializePlayers(){
 	int numPlayers;
-	cout << "How many players are there?"
+	cout << "How many players are there?";
 	cin >> numPlayers;
 	for (int i(0); i < numPlayers; i++){
 		cout << "What is the name of player " << i << "?";
