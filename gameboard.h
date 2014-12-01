@@ -97,6 +97,8 @@ class GameBoard{
 						}
 					}
 				}
+
+			throw "PLAYER NOT FOUND";
 		}
 
 		const T& getTile(const string& playerName) const{
@@ -110,13 +112,14 @@ class GameBoard{
 						}
 					}
 				}
+			throw "TILE NOT FOUND";
 		}
 
 		vector<J> getPlayers(const T& tile) const{
 			for (int i(0); i < Y; i++)
 				for (int j(0); j < X; j++){
 					if(tileGrid[i][j] == tile){
-						vector<J> result{ begin(playerGrid[i][j]), end(playerGrid[i][j]) };
+						vector<J> result{ playerGrid[i][j].begin(), playerGrid[i][j].end() };
 						return result;
 					}
 				}
@@ -135,27 +138,26 @@ class GameBoard{
 					iterator != end; ++iterator) {
 					if (player.name == (*iterator).name){
 						player = *iterator;
+
+						switch(move){
+							case UP    :
+								addPlayer(player, *y-1, *x);
+								break;
+							case DOWN  :
+								addPlayer(player, *y+1, *x);
+								break;
+							case LEFT  :
+								addPlayer(player, *y, *x-1);
+								break;
+							case RIGHT :
+								addPlayer(player, *y, *x+1);
+
+						}
+						(playerGrid[*y][*x]).erase(iterator);
 						break;
 					}
 			}
-
-			switch(move){
-				case UP    :
-					addPlayer(player, *y-1, *x);
-					break;
-				case DOWN  :
-					addPlayer(player, *y+1, *x);
-					break;
-				case LEFT  :
-					addPlayer(player, *y, *x-1);
-					break;
-				case RIGHT :
-					addPlayer(player, *y, *x+1);
-					break;
-			}
-
-			playerGrid[*y][*x].remove(player);
-
+			return playerTile;
 		}
 };
 
