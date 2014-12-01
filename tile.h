@@ -72,7 +72,6 @@ ostream& operator<<(ostream &out, const Tile& tile);
 
 class TileFactory {
 	private:
-		int current;
 		vector<Tile> tiles;
 		TileFactory(int _nTiles);
 	public:

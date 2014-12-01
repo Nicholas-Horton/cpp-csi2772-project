@@ -21,6 +21,7 @@ Tile* Tile::clone(){
 
 bool RestaurantTile::action(Player& player){
 	player.food = 10;
+	return true;
 }
 bool MarchandEpiceTile::action(Player& player){
 	if(player.gold >= 2) {
@@ -147,7 +148,6 @@ ostream& operator<<(ostream &out, const Tile& tile){
 
 //TileFactory
 TileFactory::TileFactory(int _nTiles) {
-	current = 0;
 	for(int i = 0; i < _nTiles; ++i){
 		Tile *t;
 		int n = rand() % 14;
@@ -204,5 +204,7 @@ TileFactory* TileFactory::get(int _nTiles) {
 	return &tf;
 }
 Tile* TileFactory::next() {
-		return &(tiles.at(current++));
+		Tile *t = &(tiles.back());
+		tiles.pop_back();
+		return t;
 }
