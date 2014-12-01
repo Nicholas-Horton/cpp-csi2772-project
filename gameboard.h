@@ -125,7 +125,7 @@ class GameBoard{
 				}
 		}
 
-		const T& move(enum Move move, const string& playerName ){ //TODO: uncertain about implementation
+		const T& move(enum Move move, const string& playerName ){
 			T playerTile = getTile(playerName);
 			int *x;
 			int *y;
