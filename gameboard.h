@@ -41,7 +41,7 @@ class GameBoard{
 			bool outOfVerticalBounds = rowVal >= Y || rowVal < 0;
 			bool outOfHorizontalBounds = colVal >= X || colVal < 0;
 			if(outOfVerticalBounds || outOfHorizontalBounds){
-				throw out_of_range("Coordinate out of bounds!");
+				throw out_of_range("Coordinate out of bounds! \n");
 			}
 		}
 
