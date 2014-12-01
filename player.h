@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -21,6 +22,7 @@ class Player{
 	int food; //le nombre de nourritures.
 
 	Player();
+	Player(string _name);
 
 	// retourne vrai si food > 0
 	bool canAct() const;
@@ -31,5 +33,7 @@ class Player{
 	// nombre de resources de libres
 	int getNumFreeResources();
 };
+
+ostream& operator<<(ostream &out, const Player& player);
 
 #endif //PLAYER_H
