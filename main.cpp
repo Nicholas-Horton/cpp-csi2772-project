@@ -45,7 +45,7 @@ GameBoard<Tile,Player,6,6> setup(){
 				for (int x = 0; x < playerNames.size(); ++x){
 					_gb.addPlayer(*(new Player(playerNames[x])), i, j);
 				}
-				break;
+				return _gb;
 			}
 		}
 
@@ -57,7 +57,10 @@ bool takeTurn( GameBoard<Tile,Player,6,6> &gb, const std::string &pName) {
 			Move m;
 		cin.exceptions(std::istream::failbit);
 
-		// quel est le deplacement du joueur ?
+		int *x = new int;
+		int *y = new int;
+		gb.getPlayerCoordinate(pName, y, x);
+		cout << "You are at coordinate X: " << *x << " Y: " << *y << endl;
 		cout << "What is your move?" << endl;
 		cin>> m;
 		const Tile t = gb.move( m, pName );
