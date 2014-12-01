@@ -60,7 +60,7 @@ class GameBoard{
 		void getCoordinate(const T &tile, int *row, int *col) const{
 			for (int i(0); i < Y; i++)
 				for (int j(0); j < X; j++){
-					if (tileGrid[row][col] == tile){
+					if (tileGrid[i][j] == tile){
 						*row = i;
 						*col = i;
 						return;
@@ -78,7 +78,7 @@ class GameBoard{
 					for (typename list<J>::const_iterator iterator = playerGrid[i][j].begin(),
 						end = playerGrid[i][j].end();
 						iterator != end; ++iterator) {
-						if (player.name == *iterator.name){
+						if (player.name == (*iterator).name){
 							*iterator = player;
 							return;
 						}
@@ -92,7 +92,7 @@ class GameBoard{
 					for (typename list<J>::const_iterator iterator = playerGrid[i][j].begin(),
 						end = playerGrid[i][j].end();
 						iterator != end; ++iterator) {
-						if (playerName == *iterator.name){
+						if (playerName == (*iterator).name){
 							return *iterator;
 						}
 					}
@@ -105,7 +105,7 @@ class GameBoard{
 					for (typename list<J>::const_iterator iterator = playerGrid[i][j].begin(),
 						end = playerGrid[i][j].end();
 						iterator != end; ++iterator) {
-						if (playerName == *iterator.name){
+						if (playerName == (*iterator).name){
 							return tileGrid[i][j];
 						}
 					}
@@ -133,7 +133,7 @@ class GameBoard{
 			for (typename list<J>::const_iterator iterator = playerGrid[*y][*x].begin(),
 					end = playerGrid[*y][*x].end();
 					iterator != end; ++iterator) {
-					if (player.name == *iterator.name){
+					if (player.name == (*iterator).name){
 						player = *iterator;
 						break;
 					}
