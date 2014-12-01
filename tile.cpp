@@ -8,7 +8,7 @@ Tile::Tile(){
 }
 
 bool Tile::operator==(const Tile &t){
-	return false; //TODO: complete
+	return type == t.type;
 }
 
 bool Tile::action(Player& player) const{
@@ -224,66 +224,45 @@ Tile* PalaisTile::clone() const {
 
 
 ostream& operator<<(ostream &out, const Tile& tile){
-	// TODO: put something here
+	out << tile.type << endl;
 }
 
 //TileFactory
 TileFactory::TileFactory(int _nTiles) {
-	for(int i = 0; i < _nTiles; ++i){
+	int overlap = _nTiles % 14;
+	for(int i = 0; i < _nTiles - overlap; ++i){
 		Tile *t;
-		int n = rand() % 14;
-		switch(n) {
-			case 0:
-				break;
-			case 1:
-				t = new RestaurantTile();
-				break;
-			case 2:
-				t = new MarchandEpiceTile();
-				break;
-			case 3:
-				t = new MarchandTissusTile();
-				break;
-			case 4:
-				t = new BijoutierTile();
-				break;
-			case 5:
-				t = new FabriquantCharretteTile();
-				break;
-			case 6:
-				t = new PetitMarcheTile();
-				break;
-			case 7:
-				t = new MarcheEpicesTile();
-				break;
-			case 8:
-				t = new MarcheBijouxTile();
-				break;
-			case 9:
-				t = new MarcheTissusTile();
-				break;
-			case 10:
-				t = new MarcheNoirTile();
-				break;
-			case 11:
-				t = new CasinoTile();
-				break;
-			case 12:
-				t = new MarchandGemmesTile();
-				break;
-			case 13:
-				t = new PalaisTile();
-				break;
+		switch(i%14) {
+			case 0:	 t = new Tile();                    break;
+			case 1:  t = new RestaurantTile();          break;
+			case 2:	 t = new MarchandEpiceTile();	      break;
+			case 3:	 t = new MarchandTissusTile();      break;
+			case 4:	 t = new BijoutierTile();	          break;
+			case 5:	 t = new FabriquantCharretteTile();	break;
+			case 6:	 t = new PetitMarcheTile();	        break;
+			case 7:	 t = new MarcheEpicesTile();        break;
+			case 8:	 t = new MarcheBijouxTile();        break;
+			case 9:	 t = new MarcheTissusTile();        break;
+			case 10: t = new MarcheNoirTile();          break;
+			case 11: t = new CasinoTile();              break;
+			case 12: t = new MarchandGemmesTile();      break;
+			case 13: t = new PalaisTile();              break;
+			default:                                    break;
 		}
 		tiles.push_back(*t);
 	}
+	for(int i = 0; i < overlap; ++i)
+		tiles.push_back(*(new Tile()));
+	random_shuffle(tiles.begin(), tiles.end());
 }
+
 TileFactory* TileFactory::get(int _nTiles) {
 	if(_nTiles < 14)
 		return NULL;
 	static TileFactory tf(_nTiles);
 	return &tf;
 }
+
 Tile* TileFactory::next() {
 		Tile *t = &(tiles.back());
 		tiles.pop_back();
