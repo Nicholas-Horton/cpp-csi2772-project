@@ -109,7 +109,6 @@ class TileFactory {
 	public:
 		static TileFactory *get(int _nTiles);
 		Tile *next();
-
 };
 
 #endif //TILE_H

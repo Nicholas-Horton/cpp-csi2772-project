@@ -164,7 +164,6 @@ class GameBoard{
 						}
 					}
 				}
-
 			throw "PLAYER NOT FOUND";
 		}
 

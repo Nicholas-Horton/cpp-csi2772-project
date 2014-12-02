@@ -28,7 +28,6 @@ void initializePlayers(){
 		cin >> temp;
 		playerNames.push_back(temp);
 	}
-
 }
 
 GameBoard<Tile,Player,6,6> setup(){
@@ -52,13 +51,12 @@ GameBoard<Tile,Player,6,6> setup(){
 				return _gb;
 			}
 		}
-
 	return _gb;
 }
 
 bool takeTurn( GameBoard<Tile,Player,6,6> &gb, const std::string &pName) {
 	try {
-			Move m;
+		Move m;
 		cin.exceptions(std::istream::failbit);
 
 		int *x = new int;
